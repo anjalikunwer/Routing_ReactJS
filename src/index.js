@@ -1,13 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.css'
+import UserLogin from './user/login';
+import HomePage from './user/home';
+
+const router = createBrowserRouter([
+  {
+    path:'/',
+    element:<div className='bg-danger'>Hello World!!!</div>,
+  },
+  {
+    path:'/login',
+    element:<UserLogin />
+  },
+  {
+    path:'/home',
+    element:<HomePage />
+  }
+  
+]);
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 

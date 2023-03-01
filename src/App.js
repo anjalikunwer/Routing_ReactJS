@@ -1,25 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
+import React,{useEffect,useState} from 'react';
+import {Navigate} from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = ()=>
+{
+  const [input, setInput] = useState('');
+  const userID = (e) => {
+    console.log("Text => ",e.nativeEvent.target.value);
+    setInput(e.nativeEvent.target.value); 
+  }
+  const userPassword = (e) => {
+    console.log("Text => ",e.nativeEvent.target.value);
+    setInput(e.nativeEvent.target.value);
+  }
+  const getemail = sessionStorage.getItem("userID");
+  if(getemail == null)
+  {
+    return <Navigate replace to="/login" />;
+  }
+  else
+  {
+    return(
+      <h1>Welcome : {getemail}</h1>
+    );
+  }
 }
 
 export default App;
